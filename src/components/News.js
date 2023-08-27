@@ -44,8 +44,8 @@ export default function News(){
     }
 
     const savedArticles = async () => {
-        fetch(`https://react-api.up.railway.app/read`)
-        // fetch(`http://localhost:4000/read`)
+        // fetch(`https://react-api.up.railway.app/read`)
+        fetch(`http://localhost:4000/read`)
             .then(res => res.json())
             .then(data => {
                 console.log("savedArticles data =>", data);
@@ -62,8 +62,8 @@ export default function News(){
         let price = Math.floor(Math.random() *10)+','+ Math.ceil(Math.random() *1000) +',000';
         id = Math.floor(Math.random() * 10000000000000000);
 
-        fetch(`https://react-api.up.railway.app/create`,
-        // fetch(`http://localhost:4000/create`, 
+        // fetch(`https://react-api.up.railway.app/create`,
+        fetch(`http://localhost:4000/create`, 
         {
             method: 'POST',
             headers: {
@@ -94,8 +94,8 @@ export default function News(){
     const deleteArticle = async (id) => { 
         console.log(`deleteArticle ${id}`);
 
-        fetch(`https://react-api.up.railway.app/delete/${id}`,
-        // fetch(`http://localhost:4000/delete/${id}`, 
+        // fetch(`https://react-api.up.railway.app/delete/${id}`,
+        fetch(`http://localhost:4000/delete/${id}`, 
         {
             method: 'DELETE',
             headers: {
