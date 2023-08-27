@@ -155,7 +155,7 @@ export default function News(){
                                 <strong >{article.title}</strong> 
                             </a><br></br>
                             <p style={{fontSize:'12px'}}>{article.abstract}</p>
-                            <a 
+                            <button 
                                 style={{fontSize:"12px", color:"white"}} href="none"
                                 onClick={ (e) => { 
                                     saveArticle(index, article.title, article.abstract, article.multimedia[2].url, article.url) 
@@ -163,7 +163,7 @@ export default function News(){
                                 }}
                             >
                                 <img width="25px" src="./assets/Icon-download-white.png" alt="new"></img> Share
-                            </a>
+                            </button>
                         </div>
                     )}
                 </div>
