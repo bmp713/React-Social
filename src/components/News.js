@@ -3,35 +3,22 @@
 /* eslint-disable no-unused-vars */
 import '../App.scss';
 import React, { useState, useEffect, useContext } from 'react';
-import { doc, query, where, addDoc, setDoc, getDoc, getDocs, deleteDoc, collection } from 'firebase/firestore';
-import { db } from '../Firebase';
-import { storage } from '../Firebase';
-
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-
-import {UserContext} from '../contexts/UserContext';
 
 export default function News(){
 
     // User authentication
-    const {currentUser, login, logout} = useContext(UserContext);
-    const [formData, setFormData] = useState({});
+    // const {currentUser, login, logout} = useContext(UserContext);
+    // const [formData, setFormData] = useState({});
     
     const [articles, setArticles] = useState([]);
     const [numArticles, setNumArticles]= useState(2);
     const [maxArticles, setMaxArticles]= useState(0);
-
     const [sharedArticles, setSharedArticles]= useState([]);
 
     useEffect( () => {
         searchNews();
         savedArticles();
     }, []);
-
-    useEffect( () => {
-        searchNews();
-        savedArticles();
-    }, [sharedArticles]);
 
     // Create user additional profile data in users db
     const searchNews = async (e) => {
@@ -72,6 +59,7 @@ export default function News(){
     const saveArticle = async (id, title, desc, img, url) => {
         console.log("saveArticle");
         let price = Math.floor(Math.random() *10)+','+ Math.ceil(Math.random() *1000) +',000';
+        id = Math.floor(Math.random() * 10000000000000000);
 
         fetch(`https://react-api.up.railway.app/create`,
         // fetch(`http://localhost:4000/create`, 
@@ -95,7 +83,30 @@ export default function News(){
         .then(res => res.json())
         .then(data => {
             console.log("POST data =>", data);
+            savedArticles();
         })    
+        .catch(err => {
+            console.error(err);
+        })
+    }
+
+    const deleteArticle = async (id) => {
+        console.log(`deleteArticle ${id}`);
+
+        fetch(`https://react-api.up.railway.app/delete/`,
+        // fetch(`http://localhost:4000/delete/${id}`, 
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json' , 
+            },
+            body: JSON.stringify({ 
+                id: id
+            })
+        })
+        .then(res => {
+            savedArticles();
+        })
         .catch(err => {
             console.error(err);
         })
@@ -163,7 +174,7 @@ export default function News(){
                 >
                     Load more...
                 </button>
-                <br></br>    
+                <br></br>
 
                 <hr></hr>
                 <div className="row text-left px-4 my-4">
@@ -186,6 +197,12 @@ export default function News(){
                             <strong>{article.name}</strong> 
                             <p style={{fontSize:'12px'}}>{article.description}</p>
                         </a><br></br>
+                        <button    
+                            style={{padding:'0px 0px', color:'white', fontSize:'14px'}}
+                            onClick={ e =>  deleteArticle(article.id) }
+                        >
+                            Delete
+                        </button>
                     </div>
                     )}
                 </div>
@@ -196,6 +213,7 @@ export default function News(){
                 >
                     Load more...
                 </button>
+                <hr></hr>
                 <br></br><br></br>
             </div>
     )
