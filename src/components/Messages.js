@@ -24,10 +24,10 @@ export default function Messages(){
     const [showMenu, setShowMenu] = useState(false);
 
     const [users, setUsers] = useState("");
-    const [userImage, setUserImage] = useState();
+    // const [userImage, setUserImage] = useState();
 
-    const [showComment, setShowComment] = useState(false);
-    const [commentIDS, setCommentIDS] = useState([]);
+    // const [showComment, setShowComment] = useState(false);
+    // const [commentIDS, setCommentIDS] = useState([]);
     const [commentID, setCommentID] = useState(0);
     const [comments, setComments] = useState([]);
 
@@ -207,10 +207,6 @@ export default function Messages(){
             console.log(error);
         }
     };
-
-    // Clear all forms 
-    const clearForms = () => {
-    }
 
     // Edit message by message ID
     const editMessage = async (id) => {
@@ -525,8 +521,6 @@ export default function Messages(){
 
 
                             { 
-                                // commentID === message.id && commentIDS[message.id] &&
-                                // commentID === message.id && showComment &&
                                 commentID === message.id && 
 
                                 <div className="mx-auto">
