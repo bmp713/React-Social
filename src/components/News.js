@@ -11,9 +11,10 @@ export default function News(){
     // const [formData, setFormData] = useState({});
     
     const [articles, setArticles] = useState([]);
-    const [numArticles, setNumArticles]= useState(2);
+    const [numArticles, setNumArticles]= useState(4);
     const [maxArticles, setMaxArticles]= useState(0);
     const [sharedArticles, setSharedArticles]= useState([]);
+    const [sharedNumArticles, setSharedNumArticles]= useState(2);
 
     useEffect( () => {
         searchNews();
@@ -148,7 +149,7 @@ export default function News(){
                                 style={{fontSize:'15px'}}
                             >
                                 <img 
-                                    height="125" 
+                                    height="150" 
                                     className="my-2" 
                                     src={ article.multimedia !== null ? article.multimedia[2].url : ''} alt=""
                                 ></img><br></br>
@@ -162,26 +163,26 @@ export default function News(){
                                     e.preventDefault();
                                 }}
                             >
-                                <img width="25px" src="./assets/Icon-download-white.png" alt="new"></img> Share
+                                <img width="20px" src="./assets/Icon-download-white.png" alt="new"></img> 
+                                <span style={{fontSize:"12px"}}>Share</span>
                             </button>
                         </div>
                     )}
                 </div>
                 <button 
-                    className="submit-btn my-3"
-                    style={{padding:'11px 0px', fontSize:'14px'}}
+                    className="submit-btn my-0"
+                    style={{padding:'10px 0px', fontSize:'14px'}}
                     onClick={ () =>{ setNumArticles( numArticles + 2) }}
                 >
                     Load more...
                 </button>
-                <br></br>
 
                 <hr></hr>
                 <div className="row text-left px-4 my-4">
                 <h3>Shared    
                 </h3>
                 <hr></hr> 
-                { sharedArticles.slice(0, numArticles).map( (article, index ) =>  
+                { sharedArticles.slice(0, sharedNumArticles).map( (article, index ) =>  
                     <div className="col-xl-5" key={index}>
                         <a 
                             className="text-white" 
@@ -190,7 +191,7 @@ export default function News(){
                             style={{fontSize:'15px'}}
                         >
                             <img 
-                                height="125" 
+                                height="150" 
                                 className="my-2" 
                                 src={article.img} alt=""
                             ></img><br></br>
@@ -201,7 +202,7 @@ export default function News(){
                             style={{padding:'0px 0px', color:'white', fontSize:'14px'}}
                             onClick={ e =>  deleteArticle(article.id) }
                         >
-                            Delete
+                            <p style={{fontSize:'12px'}}>X Remove</p>
                         </button>
                     </div>
                     )}
@@ -209,12 +210,11 @@ export default function News(){
                 <button 
                     className="submit-btn"
                     style={{padding:'11px 0px', fontSize:'14px'}}
-                    onClick={ () => { setNumArticles( numArticles + 2) }}
+                    onClick={ (e) => { setSharedNumArticles( sharedNumArticles + 2) ; console.log("sharedNumArticles ", sharedNumArticles)}}
                 >
                     Load more...
                 </button>
                 <hr></hr>
-                <br></br><br></br>
             </div>
     )
 }

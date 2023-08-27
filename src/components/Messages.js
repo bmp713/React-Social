@@ -492,6 +492,7 @@ export default function Messages(){
                                         <div 
                                             className="comment row justify-content-start align-items-start mx-auto my-2 p-1"
                                             style={{width:"100%", background:"#0001"}}
+                                            key={comment.id}
                                         >
                                             <div className="col-xl-1 col-2">  
                                                 <img    
