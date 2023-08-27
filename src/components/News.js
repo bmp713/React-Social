@@ -90,7 +90,7 @@ export default function News(){
         })
     }
 
-    const deleteArticle = async (id) => {
+    const deleteArticle = async (id) => { 
         console.log(`deleteArticle ${id}`);
 
         fetch(`https://react-api.up.railway.app/delete/`,
