@@ -124,7 +124,7 @@ export default function News(){
             >
                 <div id="news" className="col-lg-12 text-left px-3">
                     <h2>NY Times    
-                        <p>Headlines
+                        <p>Headlines 
                         <span>
                             <button 
                                 className="text-decoration-underline text-white float-end"
