@@ -135,7 +135,6 @@ export default function News(){
                             </button>
                         </span>    
                         </p>               
-
                     </h2>
                     <hr></hr>  
                 </div>
@@ -178,7 +177,7 @@ export default function News(){
                 </button>
 
                 <hr></hr>
-                <div className="row text-left px-4 my-4">
+                <div className="row text-left px-3 my-4">
                 <h3>Shared    
                 </h3>
                 <hr></hr> 
