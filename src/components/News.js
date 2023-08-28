@@ -71,12 +71,9 @@ export default function News(){
             },
             body: JSON.stringify({ 
                 id: id,
-                city: 'NY Times',
                 name: title,
                 type: 'Article',
                 description: desc,
-                rooms: 0,
-                price: price,
                 img: img,
                 url: url
             })
